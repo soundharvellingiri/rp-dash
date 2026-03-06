@@ -38,10 +38,9 @@ modalEl.addEventListener("click", (event) => {
   }
 });
 
-// Prefill and fetch default student details as soon as the page is ready.
+// Fetch default student details on startup without pre-filling the search input.
 window.addEventListener("DOMContentLoaded", () => {
-  regInput.value = DEFAULT_REG_NUMBER;
-  form.requestSubmit();
+  runLookup(DEFAULT_REG_NUMBER, false);
 });
 
 async function handleLookup(event) {
@@ -54,6 +53,11 @@ async function handleLookup(event) {
     showWarningModal("Enter a registration number or student name.");
     return;
   }
+
+  await runLookup(query, true);
+}
+
+async function runLookup(query, syncInput) {
 
   setBusy(true);
 
@@ -72,7 +76,7 @@ async function handleLookup(event) {
 
     if (matches.length === 1) {
       hideModal();
-      renderStudent(matches[0]);
+      renderStudent(matches[0], syncInput);
       return;
     }
 
@@ -230,7 +234,7 @@ function formatPoints(value) {
   return new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(toNumber(value));
 }
 
-function renderStudent(student) {
+function renderStudent(student, syncInput = true) {
   const selectedReg = String(student[state.fieldIndex.reg] || "");
   const balance = toNumber(student[state.fieldIndex.balance]);
   const redeemed = toNumber(student[state.fieldIndex.redeemed]);
@@ -239,7 +243,9 @@ function renderStudent(student) {
   regEl.textContent = `Reg Number: ${selectedReg || "-"}`;
   balanceEl.textContent = formatPoints(balance);
   redeemedEl.textContent = formatPoints(redeemed);
-  regInput.value = selectedReg || regInput.value;
+  if (syncInput) {
+    regInput.value = selectedReg || regInput.value;
+  }
 
   showResult();
 }
