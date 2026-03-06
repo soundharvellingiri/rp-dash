@@ -38,6 +38,12 @@ modalEl.addEventListener("click", (event) => {
   }
 });
 
+// Prefill and fetch default student details as soon as the page is ready.
+window.addEventListener("DOMContentLoaded", () => {
+  regInput.value = DEFAULT_REG_NUMBER;
+  form.requestSubmit();
+});
+
 async function handleLookup(event) {
   event.preventDefault();
 
@@ -294,4 +300,3 @@ function showWarningModal(message) {
 
   showModal();
 }
-
