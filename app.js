@@ -1,5 +1,6 @@
 const SHEET_ID = "1R8MCP0U2ZZ-ccD29jfw9Hd6BhyYu72cu_aKuDgB1X7M";
 const SHEET_NAME = "COMPLETE LIST";
+const DEFAULT_REG_NUMBER = "7376232AG114";
 
 const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=${encodeURIComponent(
   SHEET_NAME,
@@ -293,3 +294,4 @@ function showWarningModal(message) {
 
   showModal();
 }
+
