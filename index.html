@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reward Point Lookup</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="mesh-overlay" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <section class="hero">
+        <p class="eyebrow">Reward Dashboard</p>
+        <h1>Check Your Reward Points</h1>
+        <p class="subtitle">
+          Search by registration number or name to see balance points and redeemed points.
+        </p>
+      </section>
+
+      <section class="lookup-card" aria-label="Lookup form">
+        <form id="lookup-form" class="lookup-form">
+          <label for="reg-number">Registration Number or Student Name</label>
+          <div class="input-row">
+            <input
+              id="reg-number"
+              name="regNumber"
+              type="text"
+              placeholder="Ex: 7376251EC298 or Dinesh DD"
+              autocomplete="off"
+              required
+            />
+            <button id="search-btn" type="submit">Search</button>
+          </div>
+        </form>
+
+        <section id="result" class="result" aria-label="Student result">
+          <div class="student-head">
+            <h2 id="student-name">-</h2>
+            <p id="student-reg" class="muted">-</p>
+          </div>
+
+          <div class="metric-grid">
+            <article class="metric">
+              <p class="metric-label">Balance Points</p>
+              <p id="balance-points" class="metric-value">0</p>
+            </article>
+            <article class="metric">
+              <p class="metric-label">Redeemed Points</p>
+              <p id="redeemed-points" class="metric-value">0</p>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <div id="student-modal" class="student-modal" aria-hidden="true">
+      <div class="student-modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="student-modal-head">
+          <h2 id="modal-title">Select Student</h2>
+          <button id="modal-close" type="button" class="modal-close" aria-label="Close">Close</button>
+        </div>
+        <div id="modal-list" class="modal-list"></div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
